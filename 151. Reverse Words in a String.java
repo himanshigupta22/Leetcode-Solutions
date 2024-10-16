@@ -3,7 +3,6 @@ class Solution {
        StringBuilder res = new StringBuilder();
        int n = str.length();
        int right = n-1;
-
        while(right >= 0){
         while(right >= 0 && str.charAt(right) == ' '){
             right--;
