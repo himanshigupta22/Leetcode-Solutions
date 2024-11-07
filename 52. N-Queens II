@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isSafe(char[][] board, int row, int col){
+        for(int i = row - 1, j = col; i >= 0; i--){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        for(int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        for(int i = row - 1, j = col + 1; i >= 0 && j < board.length; i--, j++){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void printNQueens(char[][] board, int[] ans, int row){
+        if(row == board.length){
+            ans[0]++;
+            return;
+        }
+        for(int col = 0; col < board.length; col++){
+            if(isSafe(board, row, col) == true){
+                board[row][col] = 'Q';
+                printNQueens(board, ans, row+1);
+                board[row][col] = '.';
+            }
+        }
+    }
+
+    public int totalNQueens(int n) {
+        int[] ans = new int[1];
+        char[][] board = new char[n][n];
+        printNQueens(board, ans, 0);
+        return ans[0];
+    }
+}
